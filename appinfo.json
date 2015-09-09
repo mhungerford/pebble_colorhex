@@ -1,0 +1,56 @@
+{
+  "versionLabel": "1.0", 
+  "uuid": "16fc8363-1ccd-4d92-913c-4a0d56156cbe",
+  "appKeys": {
+    "dummy": 0
+  }, 
+  "companyName": "Matthew Hungerford", 
+  "watchapp": {
+    "watchface": true
+  }, 
+  "targetPlatforms": [
+    "basalt", "chalk"
+  ],
+  "longName": "ColorHex", 
+  "versionCode": 1, 
+  "shortName": "ColorHex", 
+  "resources": {
+    "media": [
+      {
+        "type": "font", 
+        "characterRegex": "[ :0-9]", 
+        "name": "FONT_BOXY_TEXT_20", 
+        "file": "Boxy_Text.ttf"
+      }, 
+      {
+        "type": "font", 
+        "characterRegex": "[ :0-9]", 
+        "name": "FONT_BOXY_OUTLINE_20", 
+        "file": "Boxy_Outline.ttf"
+      }, 
+      {
+        "type": "font", 
+        "characterRegex": "[ :0-9]", 
+        "name": "FONT_LCD_24", 
+        "file": "LiquidCrystal-Bold.ttf"
+      }, 
+      {
+        "type": "font", 
+        "characterRegex": "[ 0-9MTWFSADEHINORU]", 
+        "name": "FONT_LCD_20", 
+        "file": "LiquidCrystal-Bold.ttf"
+      }, 
+      {
+        "type": "png", 
+        "name": "MASK", 
+        "file": "mask_2x2.png"
+      }, 
+      {
+        "type": "png", 
+        "name": "IMAGE_1", 
+        "file": "colorhex.png"
+      }
+    ]
+  },
+  "sdkVersion": "3"
+}

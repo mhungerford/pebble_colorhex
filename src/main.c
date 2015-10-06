@@ -127,10 +127,10 @@ static void digital_update_proc(Layer *layer, GContext *ctx) {
 
   GPoint box_point = grect_center_point(&bounds);
 
-  // Size box to width of time
+  // Size box to width of wday
   GSize box_size = graphics_text_layout_get_content_size(
       time_string, lcd_time_font, bounds,
-      GTextOverflowModeWordWrap, GTextAlignmentRight);
+      GTextOverflowModeWordWrap, GTextAlignmentCenter);
   box_size.w += 2; // Padding
 
   graphics_draw_bitmap_in_rect(ctx, mask, 
@@ -141,7 +141,7 @@ static void digital_update_proc(Layer *layer, GContext *ctx) {
       GRect( 
         bounds.origin.x + 2, bounds.origin.y - 2,
         bounds.size.w, bounds.size.h - 2),
-      GTextOverflowModeWordWrap, GTextAlignmentRight, NULL);
+      GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
 }
 
 static void date_update_proc(Layer *layer, GContext *ctx) {
@@ -177,9 +177,6 @@ static void date_update_proc(Layer *layer, GContext *ctx) {
 static void analog_update_proc(Layer *layer, GContext *ctx) {
   time_t now = time(NULL);
   struct tm *t = localtime(&now);
-
-  GRect bounds = layer_get_bounds(layer);
-  const GPoint center = grect_center_point(&bounds);
 
   // Draw ticks behind
   draw_ticks(layer, ctx);
@@ -365,13 +362,12 @@ static void window_load(Window *window) {
   lcd_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_LCD_20));
 
   //Setup background layer for digital time display
-  digital_layer = layer_create(GRect(center.x - 2, center.y - 10, 32 * 2, 24));
+  digital_layer = layer_create(GRect(center.x - 32, center.y + 22, 32 * 2, 24));
   layer_set_update_proc(digital_layer, digital_update_proc);
   layer_add_child(window_layer, digital_layer);
 
   //Setup background layer for digital date display
-  //date_layer = layer_create(GRect(74 - 20, 28, 20 * 2, 40));
-  date_layer = layer_create(GRect(center.x - 60, center.y - 18, 20 * 2, 40));
+  date_layer = layer_create(GRect(center.x - 20, center.y - 56, 20 * 2, 40));
   layer_set_update_proc(date_layer, date_update_proc);
   layer_add_child(window_layer, date_layer);
 
